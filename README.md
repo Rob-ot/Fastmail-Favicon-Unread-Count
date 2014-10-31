@@ -15,3 +15,4 @@ I intentionally disabled autoupdating because you shouldn't trust that with some
 
 Please report all bugs.
 
+[https://openuserjs.org/scripts/middlerob/Fastmail_Favicon_Unread_Count](https://openuserjs.org/scripts/middlerob/Fastmail_Favicon_Unread_Count)
