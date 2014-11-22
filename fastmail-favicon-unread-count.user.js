@@ -4,7 +4,7 @@
 // @license     MIT
 // @description Adds a dynamic favicon to fastmail.com showing unread emails.
 // @namespace   rob@middlerob.com
-// @version     1
+// @version     1.1.0
 // @grant       none
 // @include     https://www.fastmail.com/mail/*
 // ==/UserScript==
@@ -138,16 +138,24 @@
     })
   }
 
-  // wait for FastMail to load... not the best way
-  setTimeout(function () {
-    window.FastMail.allMailboxes.addObserverForRange({}, {
-      fn: function () {
-        reBind()
-        updateTotal()
-      }
-    }, "fn")
-    reBind()
-    updateTotal()
-  }, 1000)
+  function tryInit () {
+    // wait for FastMail to load by polling
+    if (window.FastMail.allMailboxes) {
+      window.FastMail.allMailboxes.addObserverForRange({}, {
+        fn: function () {
+          reBind()
+          updateTotal()
+        }
+      }, "fn")
+      reBind()
+      updateTotal()
+    }
+    else {
+      // try again in 1s
+      setTimeout(tryInit, 1000)
+    }
+  }
+
+  tryInit()
 
 })()
