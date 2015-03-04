@@ -4,7 +4,7 @@
 // @license     MIT
 // @description Adds a dynamic favicon to fastmail.com showing unread emails.
 // @namespace   rob@middlerob.com
-// @version     1.1.0
+// @version     1.2.0
 // @grant       none
 // @include     https://www.fastmail.com/mail/*
 // ==/UserScript==
@@ -23,7 +23,7 @@
   var animateFlashOn
 
   var listeners = []
-  var favicon = document.querySelector("link[sizes='16x16']")
+  var favicon = document.querySelector("link[sizes='32x32']")
 
   var defaultImage = new Image()
   defaultImage.onload = draw
@@ -50,7 +50,7 @@
     }
 
     if (highlight) {
-      ctx.drawImage(defaultImage, 0, 0)
+      ctx.drawImage(defaultImage, 0, 0, 16, 16)
     }
     else {
       ctx.fillStyle = '#ff2323'
